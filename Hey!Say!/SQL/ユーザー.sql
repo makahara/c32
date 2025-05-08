@@ -1,0 +1,33 @@
+# peopleテーブル作成
+CREATE TABLE USER ( 
+    ID INT AUTO_INCREMENT PRIMARY KEY # ユーザーID
+    , NAME VARCHAR (100) NOT NULL # ユーザ名 
+    , AGE TINYINT NOT NULL # 年齢
+    , PASS VARCHAR (16) NOT NULL # パスワード
+    , USER_ROLEID TINYINT NOT NULL DEFAULT 1 # ユーザー管理ID 1:一般ユーザー 2:管理者ユーザー
+    , DELETE_FLG TINYINT NOT NULL DEFAULT 1 # 削除フラグ 0:削除データ 1:未削除データ 
+    , CHECK (DELETE_FLG IN (0, 1))
+    , CHECK (CHAR_LENGTH(PASS) >= 8)
+    , FOREIGN KEY (USER_ROLEID) 
+      REFERENCES USER_ROLES (USER_ROLEID)
+);
+
+# デバック用INSERT文
+INSERT INTO USER(NAME,AGE,PASS,USER_ROLEID,DELETE_FLG)
+VALUES('aaa',23,'12345678',1,1);
+
+# デバック用SELECT文
+SELECT 
+    NAME,PASS
+FROM 
+    USER
+WHERE 
+    NAME = 'aaa'
+    and
+    PASS = '12345678';
+
+# レコード全件削除
+DELETE FROM USER;
+
+# userテーブル削除
+DROP TABLE USER;

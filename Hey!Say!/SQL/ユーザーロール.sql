@@ -1,0 +1,18 @@
+# ユーザーロールテーブル作成
+CREATE TABLE USER_ROLES (
+    USER_ROLEID TINYINT PRIMARY KEY # ユーザー管理ID 
+    , ROLE_NAME VARCHAR(10) UNIQUE NOT NULL # ロールネーム
+);
+
+# ロール作成insert文
+INSERT INTO USER_ROLES
+VALUES(1,'一般');
+
+INSERT INTO USER_ROLES
+VALUES(2,'管理者');
+
+# レコード全件削除
+DELETE FROM USER_ROLES;
+
+# user_rolesテーブル削除
+DROP TABLE USER_ROLES;
